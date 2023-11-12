@@ -38,6 +38,43 @@
 
 
 
+
+/* 科技感标题1样式 */
+.titleName {
+  position: relative;
+  font-size: 3em;
+  color: #3498db;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 添加底部边框效果 */
+.titleName::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* 调整底部边框的宽度 */
+  height: 2px; /* 调整底部边框的高度 */
+  background: linear-gradient(to right, #ffeb3b, #3498db); /* 使用渐变色 */
+  background-size: 200% 100%;
+  animation: gradientFlow 4s linear infinite;
+}
+
+/* 渐变色流动动画 */
+@keyframes gradientFlow {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
 /* =========== */
 /*   全屏抽屉   */
 /* =========== */
@@ -55,7 +92,7 @@ page {
     left: 0vw;
     background-color: #f1f1f1;
     transition: all 0.4s;
-	overflow-y: auto;
+		overflow-y: auto;
 }
 
 .DrawerPage.show {

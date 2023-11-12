@@ -74,15 +74,15 @@ App({
     },
     globalData: { //全局变量
         userInfo: null,
-        skin: null,
+        skin:null,
         roleFlag: false,
-        url: "xxx",//http://localhost:8090
-        BlogName: "xxx",
-        token: "xxx",
+        url: "https://www.runwsh.com",//
+        BlogName: "哈哈屋社",
+        token: "123456",
         highlightStyle: "dracula", //代码高亮样式，可用值default,darcula,dracula,tomorrow
         adminOpenid: "xxx",
-        HaloUser: "xxx",
-        HaloPassword: "xxxxx"
+        HaloUser: "1049563035@qq.com",
+        HaloPassword: "CHENqiwei135!"
     }
     
 })
