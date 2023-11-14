@@ -1,4 +1,5 @@
 const app = getApp()
+
 const request = require('../../utils/request.js');
 Page({
 
@@ -6,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [],
+		items: [],
     selected: '',
     basicsList: [{
       icon: 'radioboxfill',

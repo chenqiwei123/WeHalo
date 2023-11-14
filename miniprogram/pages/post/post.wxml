@@ -13,7 +13,7 @@
 
 <view class="flex-sub text-center margin-sm">
   <view class="text-xxxl">
-    <text class="text-black text-bold">{{postTitle}}</text>
+    <text class="text-black text-bold" style="font-size: x-large;">{{postTitle}}</text>
   </view>
 </view>
 
@@ -61,7 +61,7 @@
 </view>
 
 <view class="margin-sm">
-    <htmltowxml text="{{postContent}}" type="md" highlightStyle="{{style}}" linenums="{{false}}" showLoading="{{false}}" bindWxmlTagATap="wxmlTagATap" imghost=""></htmltowxml>
+    <htmltowxml text="{{postContent}}"  type="md" highlightStyle="{{style}}" linenums="{{false}}" showLoading="{{false}}" bindWxmlTagATap="wxmlTagATap" imghost="https://www.runwsh.com"></htmltowxml>
 </view>
 
 <view class="ad">

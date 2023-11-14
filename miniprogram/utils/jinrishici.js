@@ -7,13 +7,13 @@ let lock = false
 const load = callback => {
   getTokenAndDo(token => {
     wx.request({
-      url: 'https://v2.jinrishici.com/one.json?client=mini-progrram-sdk/1.0',
+      url: 'https://blog.runwsh.com/findTitle',
       header: {
         'X-User-Token': token
       },
       success: res => {
-        if (res.data.status === "success") {
-          callback(res.data)
+        if (res.data.length > 0) {
+          callback(res.data[0])
         } else {
           console.error("今日诗词API 获取古诗词 失败，错误原因：" + res.data.errMessage)
         }

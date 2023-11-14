@@ -1,7 +1,7 @@
 <view class="mask" hidden="{{isHidden}}" catchtap="closeMask">
     <view class="masks" catchtap="prevent" animation="{{ani}}">
         <view class="box">
-            <image class="leftImage" mode="widthFix" src="http://yanxuan.nosdn.127.net/eb2697a360243e29fe9b7ecbb31f8112.jpg"></image>
+            <image class="leftImage" mode="widthFix" src="https://www.runwsh.com/upload/2022/06/Favicon.png"></image>
             <view class="right">
                 <view class="title">
                     <text class="name">Aquan</text>

@@ -21,12 +21,13 @@
     "wh-authorCard": "/components/authorCard/wh-authorCard",
 		"wh-addTips": "/components/addTips/wh-addTips",
 		"htmltowxml": "plugin://htmltowxml/view"
-  },
+	},
   "plugins": {
     "htmltowxml": {
       "version": "1.4.0",
       "provider": "wxa51b9c855ae38f3c"
     }
-  },
+	},
+	"lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }

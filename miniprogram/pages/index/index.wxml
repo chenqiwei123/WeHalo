@@ -34,11 +34,11 @@
 			{{item.name}}
 		</view>
 	</scroll-view>
-<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+<view class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="background-image: url(https://www.runwsh.com/upload/2023/11/simple-blue-patternvector-illustration-260nw-123135625.bmp);background-size: repeat;">
 
 	<!-- 瀑布流 -->
 	<!-- <view class="grid col-2 content text-center" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:if="{{0==TabCur}}"> -->
-	<view class="grid col-2 content text-center" style="margin-bottom: 544rpx;">
+	<view class="grid col-2 content text-center" style="margin-bottom: 650rpx;">
 		<view class="fall-left">
 			<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==0}}">
 				<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">

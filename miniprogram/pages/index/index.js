@@ -104,15 +104,16 @@ Page({
         }
         // 在适合的场景显示插屏广告
         if (interstitialAd) {
-            interstitialAd.show().catch((err) => {
-                console.error(err)
-            })
+					// 前期屏蔽广告
+            // interstitialAd.show().catch((err) => {
+            //     console.error(err)
+            // })
         }
         // 每日诗词
         jinrishici.load(result => {
             // 下面是处理逻辑示例
             this.setData({ 
-                jinrishici: result.data.content
+                jinrishici: result.title
             });
         });
         var urlPostList = app.globalData.url + '/api/content/posts';
@@ -509,7 +510,7 @@ Page({
         return {
             title: this.data.jinrishici,
             path: '/pages/index/index',
-            imageUrl: 'https://image.aquan.run/poster.jpg',
+            imageUrl: 'https://runwsh.com/upload/2022/06/AI.png',
         }
     },
     hidePasswordModal(e) {
