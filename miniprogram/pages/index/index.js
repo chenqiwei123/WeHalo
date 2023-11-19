@@ -19,7 +19,7 @@ Page({
         HaloPassword: app.globalData.HaloPassword,
         miniProgram: app.globalData.miniProgram,
 				hasUserInfo: false,
-				jinrishici:"",
+				dailyPost:"",
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         userInfo: {},
         cardIdex: 1,
@@ -81,19 +81,13 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var userInfo = wx.getStorageSync('userInfo')
-        if (userInfo) {
-            this.setData({
-                userInfo: userInfo,
-                hasUserInfo: true
-            })
-            this.getPermissions()
-        }
     },
 
     onLoad: function () {
+
         // 在页面中定义插屏广告
-        let interstitialAd = null
+				let interstitialAd = null;
+				let that1 = this;
         // 在页面onLoad回调事件中创建插屏广告实例
         if (wx.createInterstitialAd) {
             interstitialAd = wx.createInterstitialAd({
@@ -111,7 +105,8 @@ Page({
             // })
         }
 
-        var urlPostList = app.globalData.url + '/api/content/posts';
+				var urlPostList = app.globalData.url + '/api/content/posts';
+
         var token = app.globalData.token;
         var params = {
             page: 0,
@@ -122,77 +117,30 @@ Page({
             page: 0,
             size: 5,
             sort: 'visits,desc',
-        };
+				};
+
         // @todo 文章列表网络请求API数据
-        request.requestGetApi(urlPostList, token, params, this, this.successPostList, this.failPostList);
+        request.requestGetApi(urlPostList, token, params, that1, that1.successPostList, that1.failPostList);
         // @todo 文章Banner网络请求API数据
-        request.requestGetApi(urlPostList, token, paramBanner, this, this.successBanner, this.failBanner);
+        request.requestGetApi(urlPostList, token, paramBanner, that1, that1.successBanner, that1.failBanner);
         var urlAdminLogin = app.globalData.url + '/api/admin/login';
         var paramAdminLogin = {
-            username: this.data.HaloUser,
-            password: this.data.HaloPassword
+            username: that1.data.HaloUser,
+            password: that1.data.HaloPassword
         };
         // @todo 获取后台token网络请求API数据
-        request.requestPostApi(urlAdminLogin, token, paramAdminLogin, this, this.successAdminLogin, this.failAdminLogin);
-        var that =this;
+        request.requestPostApi(urlAdminLogin, token, paramAdminLogin, that1, that1.successAdminLogin, that1.failAdminLogin);
         var urlCategoriesList = app.globalData.url + '/api/content/categories';
         // 查分类
-        request.requestGetApi(urlCategoriesList, token, {sort:'createTime'}, this, function(res){
+        request.requestGetApi(urlCategoriesList, token, {sort:'createTime'}, that1, function(res){
             res.data.forEach(element => {
-                that.data.categories.push(element)
+							that1.data.categories.push(element)
             });
-            that.setData({
-                categories : that.data.categories
+            that1.setData({
+                categories : that1.data.categories
             })
 				}, null);
-				// 每日诗词
-				jinrishici.load(result => {
-					console.log("诗词："+result.title);
-						// 下面是处理逻辑示例
-						this.setData({ 
-								jinrishici: result.title
-						});
-				});        
-    },
 
-    getUserProfile: function () {
-        var that = this;
-        wx.getUserProfile({
-            desc: '用于完善用户资料',
-            success: (res) => {
-                if (res.errMsg == "getUserProfile:ok") {
-                    wx.setStorageSync('userInfo',res.userInfo)
-                    app.globalData.userInfo = res.userInfo
-                    that.setData({
-                        userInfo: res.userInfo,
-                        hasUserInfo: true,
-                    })
-                    that.getPermissions()
-                }
-            } ,fail: err => {
-                wx.showToast({
-                    title: '授权后才能体验更多功能哦',
-                    icon: 'none',
-                    duration: 3000
-                })
-            },
-        })
-    },
-
-    getPermissions: function () {
-        var that = this;
-            wx.cloud.callFunction({
-                name: 'get_wx_context',
-                success(res) {
-                    wx.setStorageSync('openid',res.result.openid)
-                    var role = res.result.openid == that.data.adminOpenid ? '管理员':'游客'
-                    app.globalData.roleFlag = res.result.openid == that.data.adminOpenid;
-                    that.setData({
-                        Role: role,
-                        roleFlag: res.result.openid == that.data.adminOpenid,
-                    });
-                },
-            })
     },
 
     DotStyle(e) {
@@ -200,12 +148,7 @@ Page({
             DotStyle: e.detail.value
         })
     },
-    // cardSwiper
-    cardSwiper(e) {
-        this.setData({
-            cardCur: e.detail.current
-        })
-    },
+
     // towerSwiper
     // 初始化towerSwiper
     towerSwiper(name) {
@@ -387,13 +330,31 @@ Page({
      * 文章Banner请求--接口调用失败处理
      */
     failBanner: function (res, selfObj) {
-        console.error('failBanner', res)
+        console.error('failBanner', res);
     },
 
 
     /**
-     * 文章列表请求--接口调用成功处理
+     * 好文推荐请求成功
      */
+		dailyPostUrlSuccess:function(res,selfObjec){
+			var that = this;
+			that.setData({
+				dailyPost:res[0].title
+			});
+		},
+
+    /**
+     * 好文推荐请求-失败
+     */
+		dailyPostUrlError:function(res,selfObjec){
+			var that = this;
+			console.log("好文推荐请求-失败");
+			that.setData({
+				dailyPost:"不要停下脚步，继续前进，你一定能够到达成功的彼岸！"
+			});
+		},
+
     /**
      * 文章列表请求--接口调用成功处理
      */
@@ -425,7 +386,10 @@ Page({
             duration: 2000,
             mask: true
           })
-    }
+		}
+				var dailyPostUrl = 'https://blog.runwsh.com/findTitle';
+				// @todo 好文推荐获取数据
+        request.requestGetApi(dailyPostUrl, null, null, that, that.dailyPostUrlSuccess, that.dailyPostUrlError);     
     },
     /**
      * 文章列表请求--接口调用失败处理

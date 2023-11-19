@@ -8,7 +8,7 @@
 				<text class="text-white text-bold titleName">{{BlogName}}</text>
 			</view>
 			<view class="text-xl padding text-shadow-meow text-white text-bold" role="" aria-label="">
-				<wh-typeWriter whContent="{{jinrishici}}"></wh-typeWriter>
+				<wh-typeWriter whContent="{{dailyPost}}"></wh-typeWriter>
 			</view>
 		</view>
 	</view>
