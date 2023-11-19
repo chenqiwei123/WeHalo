@@ -18,7 +18,8 @@ Page({
         HaloUser: app.globalData.HaloUser,
         HaloPassword: app.globalData.HaloPassword,
         miniProgram: app.globalData.miniProgram,
-        hasUserInfo: false,
+				hasUserInfo: false,
+				jinrishici:"",
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         userInfo: {},
         cardIdex: 1,
@@ -109,13 +110,7 @@ Page({
             //     console.error(err)
             // })
         }
-        // 每日诗词
-        jinrishici.load(result => {
-            // 下面是处理逻辑示例
-            this.setData({ 
-                jinrishici: result.title
-            });
-        });
+
         var urlPostList = app.globalData.url + '/api/content/posts';
         var token = app.globalData.token;
         var params = {
@@ -149,7 +144,15 @@ Page({
             that.setData({
                 categories : that.data.categories
             })
-        }, null);
+				}, null);
+				// 每日诗词
+				jinrishici.load(result => {
+					console.log("诗词："+result.title);
+						// 下面是处理逻辑示例
+						this.setData({ 
+								jinrishici: result.title
+						});
+				});        
     },
 
     getUserProfile: function () {
@@ -512,7 +515,18 @@ Page({
             path: '/pages/index/index',
             imageUrl: 'https://runwsh.com/upload/2022/06/AI.png',
         }
-    },
+		},
+		    /**
+     * 用户点击右上角分享朋友圈
+     */
+    onShareTimeline: function () {
+			// console.warn(this.data.postId);
+			return {
+					title: this.data.jinrishici,
+					path: '/pages/index/index',
+					imageUrl: 'https://runwsh.com/upload/2022/06/AI.png',
+			}
+		},
     hidePasswordModal(e) {
         this.setData({
           isPasswordShow: false

@@ -14,14 +14,15 @@ Page({
         CustomBar: app.globalData.CustomBar,
         Custom: app.globalData.Custom,
         skin: app.globalData.skin,
-        style: app.globalData.highlightStyle,
+				style: app.globalData.highlightStyle,
+				url: app.globalData.url,
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         CommentShow: false,
         ButtonTimer: '',//  按钮定时器
         LastTime: 60,
         CommentSwitch: true,
-		commentValue:''
+				commentValue:''
     },
 
     /**
@@ -143,7 +144,7 @@ Page({
         return {
             title: this.data.postTitle,
             path: '/pages/post/post?postId=' + this.data.postId,
-            imageUrl: this.data.postThumbnail,
+            imageUrl: this.data.url+""+this.data.postThumbnail,
         }
     },
 
@@ -155,7 +156,7 @@ Page({
         return {
             title: this.data.postTitle,
             path: '/pages/post/post?postId=' + this.data.postId,
-            imageUrl: this.data.postThumbnail,
+            imageUrl: this.data.url+""+this.data.postThumbnail,
         }
     },
 
