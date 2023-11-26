@@ -24,7 +24,15 @@ Page({
         CommentSwitch: true,
 				commentValue:''
     },
-
+		adLoad() {
+			console.log('Banner 广告加载成功')
+		},
+		adError(err) {
+			console.error('Banner 广告加载失败', err)
+		},
+		adClose() {
+			console.log('Banner 广告关闭')
+		},
     /**
      * 生命周期函数--监听页面加载
      */
@@ -38,7 +46,7 @@ Page({
         // 在页面onLoad回调事件中创建插屏广告实例
         if (wx.createInterstitialAd) {
             interstitialAd = wx.createInterstitialAd({
-                adUnitId: 'adunit-296c920c08da636d'
+                adUnitId: 'adunit-af50d53bbb6c192b'
             })
             interstitialAd.onLoad(() => { })
             interstitialAd.onError((err) => { })

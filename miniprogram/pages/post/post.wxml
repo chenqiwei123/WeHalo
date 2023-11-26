@@ -65,7 +65,7 @@
 </view>
 
 <view class="ad">
-    <ad unit-id="adunit-da5b1800a9eae6d3" ad-intervals="30"></ad>
+	<ad unit-id="adunit-af50d53bbb6c192b" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
 </view>
 
 <view class="cu-bar bg-white align-center">
