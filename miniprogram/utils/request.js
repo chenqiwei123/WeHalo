@@ -58,7 +58,8 @@ function requestApi(url, token, params, method, sourceObj, successFun, failFun, 
         header: { 
             'Content-Type': contentType,
             'API-Authorization': token,
-            'ADMIN-Authorization': token,
+						'ADMIN-Authorization': token,
+						'api_access_key':token
         },
         success: function (res) {
             typeof successFun == 'function' && successFun(res.data, sourceObj);

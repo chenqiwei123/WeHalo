@@ -72,12 +72,6 @@
 					"scene": null
 				},
 				{
-					"name": "关注公众号",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": 1011
-				},
-				{
 					"name": "Friends",
 					"pathName": "pages/friends/friends",
 					"query": "",

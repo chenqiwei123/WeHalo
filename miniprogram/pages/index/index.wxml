@@ -18,7 +18,7 @@
 	</view>
 
 	<view style="margin-right:20rpx; margin-left:20rpx;">
-		<official-account style=""></official-account>
+		<official-account></official-account>
 	</view>
 	<view class="cu-bar search bg-white">
 		<view class="search-form round">
@@ -26,54 +26,62 @@
 			<input bindinput="Search" id="search" name="content" type="text" placeholder="搜索文章、关键词" confirm-type="search"></input>
 		</view>
 		<view class="action">
-			<button class="cu-btn bg-lightBlue shadow-blur round" bindtap="SearchSubmit">搜索</button>
+			<button class="cu-btn bg-lightBlue shadow-blur round" bindtap="SearchSubmit" style="background-color: #92fcff;">
+				<icon class="searchcion" size='13' type='search'></icon>
+			</button>
 		</view>
 	</view>
-	<scroll-view  scroll-x class="bg-white nav text-center" style="background-color: {{skin?'#ffffff':'#ffffff'}};" scroll-with-animation="true" bindscrolltolower="loadMore">
+	<scroll-view scroll-x class="bg-white nav text-center" style="background-color: {{skin?'#ffffff':'#ffffff'}};" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="cu-item {{index==TabCur?'text-blue text-shadow text-xl':''}}  text-bold text-lg" wx:for="{{categories}}" wx:key="keyId" wx:for-index="index" bindtap="tabSelect" data-slug="{{item.slug}}" data-id="{{index}}" style="line-height:60rpx;">
 			{{item.name}}
 		</view>
 	</scroll-view>
-<view class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="background-image: url(https://www.runwsh.com/upload/2023/11/simple-blue-patternvector-illustration-260nw-123135625.bmp);background-size: repeat;">
+	<view class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="background-image: url(https://www.runwsh.com/upload/2023/11/simple-blue-patternvector-illustration-260nw-123135625.bmp);background-size: repeat;">
 
-	<!-- 瀑布流 -->
-	<!-- <view class="grid col-2 content text-center" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:if="{{0==TabCur}}"> -->
-	<view class="grid col-2 content text-center" style="margin-bottom: 650rpx;">
-		<view class="fall-left">
-			<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==0}}">
-				<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
-					<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-right:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
-						<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
-							<view class="padding-lg text-white">
-								<view class="padding-xs text-xl text-bold text-shadow">
-									{{postList.title}}
+		<!-- 瀑布流 -->
+		<!-- <view class="grid col-2 content text-center" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:if="{{0==TabCur}}"> -->
+		<view class="grid col-2 content text-center" style="margin-bottom: 750rpx;">
+			<view class="fall-left">
+				<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==0}}">
+					<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
+						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-right:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
+							<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
+								<view class="padding-lg text-white">
+									<view class="padding-xs text-xl text-bold text-shadow">
+										{{postList.title}}
+									</view>
 								</view>
 							</view>
 						</view>
-					</view>
-				</navigator>
-			</block>
-		</view>
-		<view class="fall-right">
-			<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==1}}">
-				<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
-					<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-left:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
-						<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
-							<view class="padding-lg text-white">
-								<view class="padding-xs text-xl text-bold text-shadow">
-									{{postList.title}}
+					</navigator>
+				</block>
+			</view>
+			<view class="fall-right">
+				<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==1}}">
+					<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
+						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-left:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
+							<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
+								<view class="padding-lg text-white">
+									<view class="padding-xs text-xl text-bold text-shadow">
+										{{postList.title}}
+									</view>
 								</view>
 							</view>
 						</view>
+					</navigator>
+				</block>
+			</view>
+			<view style="width:100%;display:flex;">
+				<view wx:if="{{searchLoading}}" class="loadmore loading">正在查询，请稍等一会会 ~</view>
+				<view class="container" wx:if="{{!searchLoading}}">
+					<view class="divider">
+						<span class="line"></span>
+						<span class="divider-text" bindtap="queryMore">{{showText}}</span>
+						<span class="line"></span>
 					</view>
-				</navigator>
-			</block>
+				</view>
+			</view>
 		</view>
+		<!-- 访问密码 -->
 	</view>
-
-	<!-- 访问密码 -->
-</view>
-</view>
-<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
-	<text class="cuIcon-pullright"></text>
 </view>
