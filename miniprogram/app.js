@@ -76,7 +76,7 @@ App({
         userInfo: null,
         skin:null,
         roleFlag: true,
-        url: "https://www.runwsh.com",
+        url: "https://blog.runwsh.com",
         BlogName: "哈哈屋社",
         token: "123456",
         highlightStyle: "dracula", //代码高亮样式，可用值default,darcula,dracula,tomorrow

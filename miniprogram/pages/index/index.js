@@ -435,9 +435,12 @@ Page({
 				mask: true
 			})
 		}
-		var dailyPostUrl = 'https://blog.runwsh.com/findTitle';
+		// var dailyPostUrl = 'https://blog.runwsh.com/findTitle';
+		that.setData({
+			dailyPost: "不要停下脚步，继续前进，你一定能够到达成功的彼岸！"
+		});
 		// @todo 好文推荐获取数据
-		request.requestGetApi(dailyPostUrl, null, null, that, that.dailyPostUrlSuccess, that.dailyPostUrlError);
+		// request.requestGetApi(dailyPostUrl, null, null, that, that.dailyPostUrlSuccess, that.dailyPostUrlError);
 	},
 	/**
 	 * 文章列表请求--接口调用失败处理

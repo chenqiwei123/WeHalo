@@ -43,8 +43,8 @@
 		<view class="grid col-2 content text-center" style="margin-bottom: 750rpx;">
 			<view class="fall-left">
 				<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==0}}">
-					<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
-						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-right:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
+					<navigator url="../post/post?postId={{postList.fullPath}}" open-type="navigate" data-id="{{index}}">
+						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-right:10rpx; margin-top:0; background-image:url({postList.thumbnail}); animation-delay:{{(index+1)*0.2*animationTime}}s">
 							<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
 								<view class="padding-lg text-white">
 									<view class="padding-xs text-xl text-bold text-shadow">
@@ -58,8 +58,8 @@
 			</view>
 			<view class="fall-right">
 				<block wx:for="{{postList}}" wx:key="keyId" wx:for-index="index" wx:for-item="postList" wx:if="{{index%2==1}}">
-					<navigator url="../post/post?postId={{postList.id}}" open-type="navigate" data-id="{{index}}">
-						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-left:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:''}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
+					<navigator url="../post/post?postId={{postList.fullPath}}" open-type="navigate" data-id="{{index}}">
+						<view class="margin-sm radius shadow-blur bg-img {{colourList[(index+randomNum)%10].colour}} animation-scale-up" style="margin-left:10rpx; margin-top:0; background-image:url({{skin?postList.thumbnail:\'\'}}); animation-delay: {{(index+1)*0.2*animationTime}}s;">
 							<view class="bg-maskCards flex-sub align-end" style="border-radius:6rpx; height:100%;">
 								<view class="padding-lg text-white">
 									<view class="padding-xs text-xl text-bold text-shadow">
